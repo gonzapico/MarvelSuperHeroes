@@ -1,9 +1,9 @@
-package xyz.gonzapico.holvitt
+package xyz.gonzapico.fintonicTT
 
 import io.reactivex.observers.DisposableObserver
 import xyz.gonzapico.domain.OpenWeatherAPIResponse
 import xyz.gonzapico.domain.interactor.GetWeather
-import xyz.gonzapico.holvitt.di.PerFragment
+import xyz.gonzapico.fintonicTT.di.PerFragment
 import javax.inject.Inject
 
 /**

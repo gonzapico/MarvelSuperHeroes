@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package xyz.gonzapico.holvitt.framework
+package xyz.gonzapico.fintonicTT.framework
 
 import android.app.Activity
 import android.support.annotation.IdRes

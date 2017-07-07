@@ -14,7 +14,7 @@
  * limitations under the License.
  ******************************************************************************/
 
-package xyz.gonzapico.holvitt.navigator;
+package xyz.gonzapico.fintonicTT.navigator;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;

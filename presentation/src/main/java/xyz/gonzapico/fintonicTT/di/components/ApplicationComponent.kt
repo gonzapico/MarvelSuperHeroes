@@ -1,4 +1,4 @@
-package xyz.gonzapico.holvitt.di.components
+package xyz.gonzapico.fintonicTT.di.components
 
 import android.content.Context
 import dagger.Component
@@ -6,9 +6,9 @@ import javax.inject.Singleton
 import xyz.gonzapico.domain.executor.PostExecutionThread
 import xyz.gonzapico.domain.executor.ThreadExecutor
 import xyz.gonzapico.domain.repository.WeatherRepository
-import xyz.gonzapico.holvitt.HomeActivity
-import xyz.gonzapico.holvitt.di.modules.ApplicationModule
-import xyz.gonzapico.holvitt.navigator.Navigator
+import xyz.gonzapico.fintonicTT.HomeActivity
+import xyz.gonzapico.fintonicTT.di.modules.ApplicationModule
+import xyz.gonzapico.fintonicTT.navigator.Navigator
 
 @Singleton
 @Component(modules = arrayOf(ApplicationModule::class))

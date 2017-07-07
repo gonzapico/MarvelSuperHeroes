@@ -1,4 +1,4 @@
-package xyz.gonzapico.holvitt
+package xyz.gonzapico.fintonicTT
 
 import org.junit.Test
 

@@ -24,9 +24,9 @@ allprojects {
   }
 
   ext {
-    androidApplicationId = 'xyz.gonzapico.holvitt'
+    androidApplicationId = 'xyz.gonzapico.fintonicTT'
     testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-    testApplicationId = 'xyz.gonzapico.holvitt.test'
+    testApplicationId = 'xyz.gonzapico.fintonicTT.test'
 
     compileSdkVersion = 25
     buildToolsVersion = "25.0.3"

@@ -1,7 +1,7 @@
-package xyz.gonzapico.holvitt
+package xyz.gonzapico.fintonicTT
 
 import org.junit.Test
-import xyz.gonzapico.holvitt.framework.AcceptanceTest
+import xyz.gonzapico.fintonicTT.framework.AcceptanceTest
 
 /**
  * Created by gfernandez on 7/5/17.

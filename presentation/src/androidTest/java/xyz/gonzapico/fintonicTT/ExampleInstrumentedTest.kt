@@ -1,4 +1,4 @@
-package xyz.gonzapico.holvitt
+package xyz.gonzapico.fintonicTT
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

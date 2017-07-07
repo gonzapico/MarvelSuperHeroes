@@ -1,4 +1,4 @@
-package xyz.gonzapico.holvitt.di
+package xyz.gonzapico.fintonicTT.di
 
 import javax.inject.Scope
 

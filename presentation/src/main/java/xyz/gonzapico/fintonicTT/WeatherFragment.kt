@@ -1,4 +1,4 @@
-package xyz.gonzapico.holvitt
+package xyz.gonzapico.fintonicTT
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_weather.*
 import xyz.gonzapico.data.cloud.CITY
 import xyz.gonzapico.data.cloud.HELSINKI
-import xyz.gonzapico.holvitt.di.components.DaggerFragmentComponent
-import xyz.gonzapico.holvitt.di.components.FragmentComponent
+import xyz.gonzapico.fintonicTT.di.components.DaggerFragmentComponent
+import xyz.gonzapico.fintonicTT.di.components.FragmentComponent
 import javax.inject.Inject
 
 /**

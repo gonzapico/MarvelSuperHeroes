@@ -1,11 +1,11 @@
-package xyz.gonzapico.holvitt
+package xyz.gonzapico.fintonicTT
 
 import android.app.Application
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.squareup.leakcanary.LeakCanary
-import xyz.gonzapico.holvitt.di.components.ApplicationComponent
-import xyz.gonzapico.holvitt.di.components.DaggerApplicationComponent
-import xyz.gonzapico.holvitt.di.modules.ApplicationModule
+import xyz.gonzapico.fintonicTT.di.components.ApplicationComponent
+import xyz.gonzapico.fintonicTT.di.components.DaggerApplicationComponent
+import xyz.gonzapico.fintonicTT.di.modules.ApplicationModule
 
 /**
  * Created by gfernandez on 7/5/17.

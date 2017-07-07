@@ -1,4 +1,4 @@
-package xyz.gonzapico.holvitt.di.modules
+package xyz.gonzapico.fintonicTT.di.modules
 
 import android.content.Context
 import dagger.Module
@@ -11,8 +11,8 @@ import xyz.gonzapico.data.repository.adapter.RetrofitFactory
 import xyz.gonzapico.domain.executor.PostExecutionThread
 import xyz.gonzapico.domain.executor.ThreadExecutor
 import xyz.gonzapico.domain.repository.WeatherRepository
-import xyz.gonzapico.holvitt.HolviApp
-import xyz.gonzapico.holvitt.UIThread
+import xyz.gonzapico.fintonicTT.HolviApp
+import xyz.gonzapico.fintonicTT.UIThread
 import javax.inject.Named
 import javax.inject.Singleton
 

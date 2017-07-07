@@ -1,4 +1,4 @@
-package xyz.gonzapico.holvitt
+package xyz.gonzapico.fintonicTT
 
 import android.app.SearchManager
 import android.content.Context
