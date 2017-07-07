@@ -5,7 +5,7 @@ import dagger.Component
 import javax.inject.Singleton
 import xyz.gonzapico.domain.executor.PostExecutionThread
 import xyz.gonzapico.domain.executor.ThreadExecutor
-import xyz.gonzapico.domain.repository.WeatherRepository
+import xyz.gonzapico.domain.repository.SuperHeroesRepository
 import xyz.gonzapico.fintonicTT.HomeActivity
 import xyz.gonzapico.fintonicTT.di.modules.ApplicationModule
 import xyz.gonzapico.fintonicTT.navigator.Navigator
@@ -19,5 +19,5 @@ interface ApplicationComponent {
   fun threadExecutor(): ThreadExecutor
 
   fun postExecutionThread(): PostExecutionThread
-  fun weatherRepository(): WeatherRepository
+  fun weatherRepository(): SuperHeroesRepository
 }

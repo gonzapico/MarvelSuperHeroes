@@ -7,27 +7,25 @@ import javax.inject.Singleton;
 import org.jetbrains.annotations.NotNull;
 import xyz.gonzapico.data.cloud.WeatherService;
 import xyz.gonzapico.data.repository.adapter.RestFactory;
-import xyz.gonzapico.domain.OpenWeatherAPIResponse;
-import xyz.gonzapico.domain.repository.WeatherRepository;
-
-import static xyz.gonzapico.data.cloud.WeatherServiceKt.APPID;
+import xyz.gonzapico.domain.SuperHeroesAPIResponse;
+import xyz.gonzapico.domain.repository.SuperHeroesRepository;
 
 /**
  * Created by gfernandez on 6/28/17.
  */
-@Singleton public class WeatherRepositoryImpl implements WeatherRepository {
+@Singleton public class SuperHeroesRepositoryImpl implements SuperHeroesRepository {
 
   private final RestFactory restAPI;
   private final String urlAPI;
 
-  @Inject WeatherRepositoryImpl(RestFactory api, @Named("ApiUrl") String apiUrl) {
+  @Inject SuperHeroesRepositoryImpl(RestFactory api, @Named("ApiUrl") String apiUrl) {
     this.restAPI = api;
     this.urlAPI = apiUrl;
   }
 
   @NotNull @Override
-  public Observable<OpenWeatherAPIResponse> getWeatherInfoOf(@NotNull String city) {
+  public Observable<SuperHeroesAPIResponse> getSuperHeroes() {
     this.restAPI.setBaseUrl(urlAPI); // Ability to change the API Url at any time.
-    return this.restAPI.create(WeatherService.class).getWeatherInfoOf(city, APPID);
+    return this.restAPI.create(WeatherService.class).getWeatherInfoOf();
   }
 }

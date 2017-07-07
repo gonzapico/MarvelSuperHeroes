@@ -1,6 +1,5 @@
 package xyz.gonzapico.domain.interactor;
 
-import com.fernandocejas.arrow.checks.Preconditions;
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -18,7 +17,7 @@ import xyz.gonzapico.domain.executor.ThreadExecutor;
  * DisposableObserver}
  * that will execute its job in a background thread and will post the result in the UI thread.
  */
-public abstract class BaseUseCase<T, Params> {
+public abstract class BaseUseCase<T> {
 
   private final ThreadExecutor threadExecutor;
   private final PostExecutionThread postExecutionThread;
@@ -33,17 +32,16 @@ public abstract class BaseUseCase<T, Params> {
   /**
    * Builds an {@link Observable} which will be used when executing the current {@link BaseUseCase}.
    */
-  abstract Observable<T> buildUseCaseObservable(Params params);
+  abstract Observable<T> buildUseCaseObservable();
 
   /**
    * Executes the current use case.
    *
    * @param observer {@link DisposableObserver} which will be listening to the observable build
-   * by {@link #buildUseCaseObservable(Params)} ()} method.
-   * @param params Parameters (Optional) used to build/execute this use case.
+   * by {@link #buildUseCaseObservable()} ()} method.
    */
-  public void execute(DisposableObserver<T> observer, Params params) {
-    final Observable<T> observable = this.buildUseCaseObservable(params)
+  public void execute(DisposableObserver<T> observer) {
+    final Observable<T> observable = this.buildUseCaseObservable()
         .subscribeOn(Schedulers.from(threadExecutor))
         .observeOn(postExecutionThread.getScheduler());
     addDisposable(observable.subscribeWith(observer));
@@ -62,8 +60,6 @@ public abstract class BaseUseCase<T, Params> {
    * Dispose from current {@link CompositeDisposable}.
    */
   private void addDisposable(Disposable disposable) {
-    Preconditions.checkNotNull(disposable);
-    Preconditions.checkNotNull(disposables);
     disposables.add(disposable);
   }
 }

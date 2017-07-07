@@ -12,7 +12,7 @@ android {
     versionCode rootProject.ext.versionCode
     versionName rootProject.ext.versionName
 
-    buildConfigField "String", "API_URL", "\"http://api.openweathermap.org/data/2.5/\""
+    buildConfigField "String", "API_URL", "\"https://api.myjson.com/\""
   }
 
   compileOptions {

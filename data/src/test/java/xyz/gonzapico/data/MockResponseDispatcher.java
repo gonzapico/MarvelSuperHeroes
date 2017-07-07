@@ -37,8 +37,8 @@ public class MockResponseDispatcher {
     @Override public MockResponse dispatch(RecordedRequest request) throws InterruptedException {
       if (RETURN_500) {
         return new MockResponse().setResponseCode(500);
-      } else if (request.getPath().startsWith("/weather")) {
-        return mockResponse.setBody(getFile("helsinkiWeather.json"));
+      } else if (request.getPath().contains("bvyob")) {
+        return mockResponse.setBody(getFile("SuperHeroesResponse.json"));
       }
       return new MockResponse().setResponseCode(404);
     }
