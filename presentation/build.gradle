@@ -70,6 +70,7 @@ dependencies {
       appDependencies.fragmentArgs,
       appDependencies.constraintLayout,
       appDependencies.supportAppCompat,
+      appDependencies.picasso,
 
       project(':domain'),
       project(':data'),)

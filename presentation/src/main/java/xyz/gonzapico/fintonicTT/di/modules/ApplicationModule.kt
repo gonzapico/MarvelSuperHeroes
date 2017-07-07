@@ -5,12 +5,12 @@ import dagger.Module
 import dagger.Provides
 import xyz.gonzapico.data.BuildConfig
 import xyz.gonzapico.data.executor.JobExecutor
-import xyz.gonzapico.data.repository.WeatherRepositoryImpl
+import xyz.gonzapico.data.repository.SuperHeroesRepositoryImpl
 import xyz.gonzapico.data.repository.adapter.RestFactory
 import xyz.gonzapico.data.repository.adapter.RetrofitFactory
 import xyz.gonzapico.domain.executor.PostExecutionThread
 import xyz.gonzapico.domain.executor.ThreadExecutor
-import xyz.gonzapico.domain.repository.WeatherRepository
+import xyz.gonzapico.domain.repository.SuperHeroesRepository
 import xyz.gonzapico.fintonicTT.HolviApp
 import xyz.gonzapico.fintonicTT.UIThread
 import javax.inject.Named
@@ -41,7 +41,7 @@ import javax.inject.Singleton
   }
 
   @Provides @Singleton internal fun provideWeatherRepository(
-      weatherRepository: WeatherRepositoryImpl): WeatherRepository {
+      weatherRepository: SuperHeroesRepositoryImpl): SuperHeroesRepository {
     return weatherRepository
   }
 }

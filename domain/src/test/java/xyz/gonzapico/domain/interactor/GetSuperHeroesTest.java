@@ -7,9 +7,8 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import xyz.gonzapico.domain.executor.PostExecutionThread;
 import xyz.gonzapico.domain.executor.ThreadExecutor;
-import xyz.gonzapico.domain.repository.WeatherRepository;
+import xyz.gonzapico.domain.repository.SuperHeroesRepository;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
@@ -18,26 +17,26 @@ import static org.mockito.Mockito.verifyZeroInteractions;
  * Created by gfernandez on 6/28/17.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class GetWeatherTest {
-  private GetWeather getWeatherUseCase;
+public class GetSuperHeroesTest {
+  private GetSuperHeroes getSuperHeroesUseCase;
 
   @Mock private ThreadExecutor mockThreadExecutor;
-  @Mock private WeatherRepository mockWeatherRepository;
+  @Mock private SuperHeroesRepository mockSuperHeroesRepository;
   @Mock private PostExecutionThread mockPostExecutionThread;
 
   private static String FAKE_CITY = "Helsinki";
 
   @Before
   public void setUp() {
-    getWeatherUseCase = new GetWeather(mockWeatherRepository, mockThreadExecutor, mockPostExecutionThread);
+    getSuperHeroesUseCase = new GetSuperHeroes(mockSuperHeroesRepository, mockThreadExecutor, mockPostExecutionThread);
   }
 
   @Test
   public void testGetWeatherObservableCase(){
-    getWeatherUseCase.buildUseCaseObservable(GetWeather.WeatherParams.Companion.forCity(FAKE_CITY));
+    getSuperHeroesUseCase.buildUseCaseObservable(GetSuperHeroes.WeatherParams.Companion.forCity(FAKE_CITY));
 
-    verify(mockWeatherRepository).getWeatherInfoOf(FAKE_CITY);
-    verifyNoMoreInteractions(mockWeatherRepository);
+    verify(mockSuperHeroesRepository).getSuperHeroes();
+    verifyNoMoreInteractions(mockSuperHeroesRepository);
     verifyZeroInteractions(mockThreadExecutor);
     verifyZeroInteractions(mockPostExecutionThread);
   }

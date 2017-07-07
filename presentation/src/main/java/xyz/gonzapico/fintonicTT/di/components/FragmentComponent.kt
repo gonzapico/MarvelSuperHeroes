@@ -1,7 +1,7 @@
 package xyz.gonzapico.fintonicTT.di.components
 
 import dagger.Component
-import xyz.gonzapico.fintonicTT.WeatherFragment
+import xyz.gonzapico.fintonicTT.SuperHeroesListFragment
 import xyz.gonzapico.fintonicTT.di.PerFragment
 import xyz.gonzapico.fintonicTT.di.modules.FragmentModule
 
@@ -9,5 +9,5 @@ import xyz.gonzapico.fintonicTT.di.modules.FragmentModule
 @Component(dependencies = arrayOf(ApplicationComponent::class),
     modules = arrayOf(FragmentModule::class))
 interface FragmentComponent {
-  fun inject(weatherFragment: WeatherFragment)
+  fun inject(weatherFragment: SuperHeroesListFragment)
 }

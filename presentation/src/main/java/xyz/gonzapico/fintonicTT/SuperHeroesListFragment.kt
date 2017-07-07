@@ -3,13 +3,12 @@ package xyz.gonzapico.fintonicTT
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
-import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_weather.*
-import xyz.gonzapico.data.cloud.CITY
-import xyz.gonzapico.data.cloud.HELSINKI
+import xyz.gonzapico.domain.SuperHero
 import xyz.gonzapico.fintonicTT.di.components.DaggerFragmentComponent
 import xyz.gonzapico.fintonicTT.di.components.FragmentComponent
 import javax.inject.Inject
@@ -17,20 +16,21 @@ import javax.inject.Inject
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [WeatherFragment.OnFragmentInteractionListener] interface
+ * [SuperHeroesListFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [WeatherFragment.newInstance] factory method to
+ * Use the [SuperHeroesListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class WeatherFragment : Fragment(), WeatherView {
+class SuperHeroesListFragment : Fragment(), SuperHeroesListView {
+
+  val TAG : String = this.javaClass.canonicalName
 
   val fragmentComponent: FragmentComponent by lazy {
     DaggerFragmentComponent
         .builder().applicationComponent(activity.app.appComponent).build()
   }
 
-  var cityToSearch: String = HELSINKI
-  lateinit var globalView : View
+  lateinit var globalView: View
 
   @Inject
   lateinit var mWeatherPresenter: WeatherPresenter
@@ -38,9 +38,6 @@ class WeatherFragment : Fragment(), WeatherView {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    val cityArg = arguments.getString(CITY)
-    if (!TextUtils.isEmpty(cityArg))
-      cityToSearch = cityArg
   }
 
   override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -58,7 +55,7 @@ class WeatherFragment : Fragment(), WeatherView {
 
   override fun onResume() {
     super.onResume()
-    mWeatherPresenter.getWeatherFrom(cityToSearch)
+    mWeatherPresenter.getSuperHeroes()
   }
 
   companion object {
@@ -67,23 +64,12 @@ class WeatherFragment : Fragment(), WeatherView {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment WeatherFragment.
+     * @return A new instance of fragment SuperHeroesListFragment.
      */
-    fun newInstance(city: String): WeatherFragment {
-      val fragment = WeatherFragment()
-      val bundle: Bundle = Bundle()
-      bundle.putString(CITY, city)
-      fragment.arguments = bundle
+    fun newInstance(): SuperHeroesListFragment {
+      val fragment = SuperHeroesListFragment()
       return fragment
     }
-  }
-
-  override fun showCity(cityName: String) {
-    tvCityName.setText(cityName)
-  }
-
-  override fun showTemperature(degrees: String) {
-    tvTemperature.setText(degrees)
   }
 
   override fun showLoading() {
@@ -95,8 +81,13 @@ class WeatherFragment : Fragment(), WeatherView {
   }
 
   override fun showError(message: String) {
-    Snackbar.make(globalView, resources.getString(R.string.city_not_found),
+    Snackbar.make(globalView, message,
         Snackbar.LENGTH_SHORT).show()
+  }
+
+  override fun renderSuperHeroes(superHeroesList: List<SuperHero>) {
+    Log.d(TAG, "number of superheroes -> " + superHeroesList.size)
+    Log.d(TAG, "first superhero -> " + superHeroesList[0].toString())
   }
 
   override fun onDestroy() {

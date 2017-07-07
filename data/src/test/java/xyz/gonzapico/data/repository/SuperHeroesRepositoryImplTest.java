@@ -15,27 +15,27 @@ import xyz.gonzapico.data.RxJavaTestRunner;
 import xyz.gonzapico.data.cloud.WeatherService;
 import xyz.gonzapico.data.repository.adapter.RetrofitFactory;
 import xyz.gonzapico.domain.OpenWeatherAPIResponse;
-import xyz.gonzapico.domain.repository.WeatherRepository;
+import xyz.gonzapico.domain.repository.SuperHeroesRepository;
 
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static xyz.gonzapico.data.cloud.WeatherServiceKt.HELSINKI;
+import static xyz.gonzapico.data.cloud.SuperheroresServiceKt.HELSINKI;
 
 /**
  * Created by gfernandez on 6/29/17.
  */
-@RunWith(RxJavaTestRunner.class) public class WeatherRepositoryImplTest extends BaseTestCase {
+@RunWith(RxJavaTestRunner.class) public class SuperHeroesRepositoryImplTest extends BaseTestCase {
 
   @Spy RetrofitFactory retrofitFactory;
-  private WeatherRepository repository;
+  private SuperHeroesRepository repository;
 
   @Before public void setUp() throws Exception {
     super.setUp();
     MockResponseDispatcher.reset();
     server.setDispatcher(MockResponseDispatcher.DISPATCHER);
     server.start();
-    repository = new WeatherRepositoryImpl(retrofitFactory, server.url("").url().toString());
+    repository = new SuperHeroesRepositoryImpl(retrofitFactory, server.url("").url().toString());
   }
 
   @After public void tearDown() throws Exception {
@@ -51,7 +51,7 @@ import static xyz.gonzapico.data.cloud.WeatherServiceKt.HELSINKI;
     TestObserver<OpenWeatherAPIResponse> subscriber = new TestObserver<>();
 
     // Attaches the subscriber and executes the Observable.
-    repository.getWeatherInfoOf(HELSINKI).subscribe(subscriber);
+    repository.getSuperHeroes().subscribe(subscriber);
     RecordedRequest request = server.takeRequest();
 
     // Checks whether these methods from inner objects are called.
@@ -83,7 +83,7 @@ import static xyz.gonzapico.data.cloud.WeatherServiceKt.HELSINKI;
     MockResponseDispatcher.RETURN_500 = true;
 
     // Attaches the subscriber and executes the Observable.
-    repository.getWeatherInfoOf(HELSINKI).subscribe(subscriber);
+    repository.getSuperHeroes().subscribe(subscriber);
 
     // We ensure we've got 500 Server Error in the onError method of the Subscriber.
     subscriber.assertError(retrofit2.HttpException.class);
@@ -102,7 +102,7 @@ import static xyz.gonzapico.data.cloud.WeatherServiceKt.HELSINKI;
     TestObserver<OpenWeatherAPIResponse> subscriber = new TestObserver<>();
 
     // Attaches the subscriber and executes the Observable.
-    repository.getWeatherInfoOf(HELSINKI).subscribe(subscriber);
+    repository.getSuperHeroes().subscribe(subscriber);
 
     // We ensure we've got 404 Not Found in the onError method of the Subscriber.
     subscriber.assertError(HttpException.class);

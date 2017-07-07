@@ -1,8 +1,8 @@
 package xyz.gonzapico.fintonicTT
 
 import io.reactivex.observers.DisposableObserver
-import xyz.gonzapico.domain.OpenWeatherAPIResponse
-import xyz.gonzapico.domain.interactor.GetWeather
+import xyz.gonzapico.domain.SuperHeroesAPIResponse
+import xyz.gonzapico.domain.interactor.GetSuperHeroes
 import xyz.gonzapico.fintonicTT.di.PerFragment
 import javax.inject.Inject
 
@@ -10,44 +10,39 @@ import javax.inject.Inject
  * Created by gfernandez on 7/5/17.
  */
 @PerFragment class WeatherPresenter @Inject constructor(
-    private val mGetWeatherUseCase: GetWeather) {
+    private val mGetSuperHeroesUseCase: GetSuperHeroes) {
 
-  lateinit var mWeatherView: WeatherView
+  lateinit var mSuperHeroesListView: SuperHeroesListView
 
-  fun onAttachView(weatherView: WeatherView) {
-    this.mWeatherView = weatherView
+  fun onAttachView(superHeroesListView: SuperHeroesListView) {
+    this.mSuperHeroesListView = superHeroesListView
   }
 
-  private fun requestWeatherOf(cityName: String) {
-    mGetWeatherUseCase.execute(object : DisposableObserver<OpenWeatherAPIResponse>() {
-      override fun onNext(openWeatherAPIResponse: OpenWeatherAPIResponse) {
-        mWeatherView.showCity(cityName)
-        mWeatherView.showTemperature(openWeatherAPIResponse.main.temp.toString() + "")
+  private fun requestSuperHeroes() {
+    mGetSuperHeroesUseCase.execute(object : DisposableObserver<SuperHeroesAPIResponse>() {
+      override fun onNext(superHeroesAPIResponse: SuperHeroesAPIResponse) {
+        mSuperHeroesListView.renderSuperHeroes(superHeroesAPIResponse.superheroes)
       }
 
       override fun onError(e: Throwable) {
-
+        mSuperHeroesListView.showError("Ha ocurrido un error inesperado " + e.message)
       }
 
       override fun onComplete() {
 
       }
-    }, GetWeather.WeatherParams.forCity(cityName))
+    })
   }
 
   fun onDetach() {
-    mWeatherView.to(null)
+    mGetSuperHeroesUseCase.dispose()
+    mSuperHeroesListView.to(null)
   }
 
-  fun getWeatherFrom(city: String) {
-    mWeatherView.showLoading()
-    if (CITIES.contains(city)) {
-      requestWeatherOf(city)
-    } else {
-      // TODO: We should show an error in the city and in the temperature
-      mWeatherView.showError("")
-    }
-    mWeatherView.hideLoading()
+  fun getSuperHeroes() {
+    mSuperHeroesListView.showLoading()
+    requestSuperHeroes()
+    mSuperHeroesListView.hideLoading()
   }
 
 }
