@@ -16,24 +16,20 @@ import static org.mockito.Mockito.verifyZeroInteractions;
 /**
  * Created by gfernandez on 6/28/17.
  */
-@RunWith(MockitoJUnitRunner.class)
-public class GetSuperHeroesTest {
+@RunWith(MockitoJUnitRunner.class) public class GetSuperHeroesTest {
   private GetSuperHeroes getSuperHeroesUseCase;
 
   @Mock private ThreadExecutor mockThreadExecutor;
   @Mock private SuperHeroesRepository mockSuperHeroesRepository;
   @Mock private PostExecutionThread mockPostExecutionThread;
 
-  private static String FAKE_CITY = "Helsinki";
-
-  @Before
-  public void setUp() {
-    getSuperHeroesUseCase = new GetSuperHeroes(mockSuperHeroesRepository, mockThreadExecutor, mockPostExecutionThread);
+  @Before public void setUp() {
+    getSuperHeroesUseCase =
+        new GetSuperHeroes(mockSuperHeroesRepository, mockThreadExecutor, mockPostExecutionThread);
   }
 
-  @Test
-  public void testGetWeatherObservableCase(){
-    getSuperHeroesUseCase.buildUseCaseObservable(GetSuperHeroes.WeatherParams.Companion.forCity(FAKE_CITY));
+  @Test public void testGetWeatherObservableCase() {
+    getSuperHeroesUseCase.buildUseCaseObservable();
 
     verify(mockSuperHeroesRepository).getSuperHeroes();
     verifyNoMoreInteractions(mockSuperHeroesRepository);
